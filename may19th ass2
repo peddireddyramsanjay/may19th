@@ -1,0 +1,42 @@
+def subCount(arr, n, k):
+ 
+    # create auxiliary hash
+    # array to count frequency
+    # of remainders
+    mod =[]
+    for i in range(k + 1):
+        mod.append(0)
+    cumSum = 0
+    for i in range(n):
+        cumSum = cumSum + arr[i]
+          
+        # as the sum can be negative,
+        # taking modulo twice
+        mod[((cumSum % k)+k)% k]= mod[((cumSum % k)+k)% k] + 1
+     
+   
+    result = 0  # Initialize result
+      
+    # Traverse mod[]
+    for i in range(k):
+   
+        
+        if (mod[i] > 1):
+            result = result + (mod[i]*(mod[i]-1))//2
+
+    result = result + mod[0]
+      
+    return result
+     
+# driver code
+ 
+arr = [4, 5, 0, -2, -3, 1]
+k = 5
+n = len(arr)
+ 
+print(subCount(arr, n, k))
+arr1 = [4, 5, 0, -12, -23, 1]
+ 
+k1 = 5
+n1 = len(arr1)
+print(subCount(arr1, n1, k1))
